@@ -1,0 +1,193 @@
+{
+  "_doc": "Mechanical face design for the Golden Sentinel. Region ids refer to labels version 'base_labels' (each id is also pinned by a representative point so the design survives re-segmentation). Effects are authored for the character's LEFT side (+X) and centre; '*_R' groups receive the mirrored effect automatically: loc (-x, y, z), rot (x, -y, -z). Group frame: Z = outward plate normal, Y = up along the surface, X = Y cross Z (lateral for left-side front plates). loc in model units (head is ~1.0 wide), rot in degrees, delay in seconds (live runtime only).",
+  "base_labels": "v2b",
+  "units_note": "Meshy model scale: bust is 1.9 units tall, head ~1.0 wide.",
+
+  "cuts": [
+    {"region": 105, "name": "brow_R", "fraction_from_medial": 0.45},
+    {"region": 332, "name": "brow_L", "fraction_from_medial": 0.45}
+  ],
+
+  "groups": {
+    "nose_bridge_upper":     {"side": "C", "cls": "plate", "pivot": "top_edge",    "members": [56]},
+    "nose_bridge_lower":     {"side": "C", "cls": "plate", "pivot": "top_edge",    "members": [366, 378, 173, 167, 166]},
+    "central_mask":          {"side": "C", "cls": "plate", "pivot": [0.0, -0.33, 0.30], "members": [141, 290, 172, 324, 51]},
+    "chin_under":            {"side": "C", "cls": "under", "pivot": "top_edge",    "members": [259]},
+    "throat_plate":          {"side": "C", "cls": "neck_plate", "pivot": "top_edge", "parent": "NECK", "members": [162]},
+    "forehead_center_lower": {"side": "C", "cls": "plate", "pivot": "bottom_edge", "members": [165]},
+    "forehead_center_mid":   {"side": "C", "cls": "plate", "pivot": "bottom_edge", "members": [178]},
+    "forehead_center_upper": {"side": "C", "cls": "plate", "pivot": "bottom_edge", "members": [177, 49]},
+
+    "brow_L_inner":          {"side": "L", "cls": "brow",  "pivot": "lateral_end", "members": ["cut:brow_L:medial"]},
+    "brow_L_outer":          {"side": "L", "cls": "brow",  "pivot": "medial_end",  "members": ["cut:brow_L:lateral"]},
+    "brow_R_inner":          {"side": "R", "cls": "brow",  "pivot": "lateral_end", "members": ["cut:brow_R:medial"]},
+    "brow_R_outer":          {"side": "R", "cls": "brow",  "pivot": "medial_end",  "members": ["cut:brow_R:lateral"]},
+    "brow_crest_L":          {"side": "L", "cls": "plate", "pivot": "lateral_end", "members": [310]},
+    "brow_crest_R":          {"side": "R", "cls": "plate", "pivot": "lateral_end", "members": [104]},
+
+    "forehead_L_transition": {"side": "L", "cls": "plate", "pivot": "lateral_end", "members": [317, 307, 316, 385, 194]},
+    "forehead_R_transition": {"side": "R", "cls": "plate", "pivot": "lateral_end", "members": [269, 282, 368, 138]},
+    "forehead_L_outer":      {"side": "L", "cls": "plate", "pivot": "lateral_end", "members": [197, 174, 201, 70, 337, 72, 77, 205, 66, 75]},
+    "forehead_R_outer":      {"side": "R", "cls": "plate", "pivot": "lateral_end", "members": [128, 107, 31, 28, 102, 103, 113, 44, 46, 47, 267, 293, 10, 42]},
+
+    "upper_lid_L":           {"side": "L", "cls": "plate", "pivot": "top_edge",    "members": [53, 61]},
+    "upper_lid_R":           {"side": "R", "cls": "plate", "pivot": "top_edge",    "members": [297, 300]},
+    "eye_light_L":           {"side": "L", "cls": "eye",   "pivot": "center",      "members": [58, 59]},
+    "eye_light_R":           {"side": "R", "cls": "eye",   "pivot": "center",      "members": [45]},
+    "eye_frame_L":           {"side": "L", "cls": "under", "pivot": "center",      "members": [54, 346, 225]},
+    "eye_frame_R":           {"side": "R", "cls": "under", "pivot": "center",      "members": [36, 115, 357]},
+    "lower_lid_L":           {"side": "L", "cls": "plate", "pivot": "bottom_edge", "members": [333, 74, 76]},
+    "lower_lid_R":           {"side": "R", "cls": "plate", "pivot": "bottom_edge", "members": [38, 159]},
+
+    "cheek_L":               {"side": "L", "cls": "plate", "pivot": "bottom_edge", "members": [64]},
+    "cheek_R":               {"side": "R", "cls": "plate", "pivot": "bottom_edge", "members": [110, 48, 135, 50]},
+    "cheek_aux_L":           {"side": "L", "cls": "plate", "pivot": "bottom_edge", "members": [33, 65]},
+    "cheek_aux_R":           {"side": "R", "cls": "plate", "pivot": "bottom_edge", "members": [43, 94, 140]},
+    "sideface_L_upper":      {"side": "L", "cls": "plate", "pivot": "lateral_end", "members": [336, 396]},
+    "sideface_R_upper":      {"side": "R", "cls": "plate", "pivot": "lateral_end", "members": [12, 3]},
+    "sideface_L_lower":      {"side": "L", "cls": "plate", "pivot": "lateral_end", "members": [34, 71, 78, 69, 207, 206, 203, 327]},
+    "sideface_R_lower":      {"side": "R", "cls": "plate", "pivot": "lateral_end", "members": [30, 251, 91, 92, 93, 123, 125, 39]},
+
+    "temple_L":              {"side": "L", "cls": "plate", "pivot": "lateral_end", "members": [339, 68, 351]},
+    "temple_R":              {"side": "R", "cls": "plate", "pivot": "lateral_end", "members": [8, 29]},
+    "temple_fin_L":          {"side": "L", "cls": "ear_fin", "pivot": "bottom_edge", "members": [348]},
+    "temple_fin_R":          {"side": "R", "cls": "ear_fin", "pivot": "bottom_edge", "members": [2]},
+    "rear_fin_L":            {"side": "L", "cls": "ear_fin", "pivot": "bottom_edge", "members": [73]},
+    "rear_fin_R":            {"side": "R", "cls": "ear_fin", "pivot": "bottom_edge", "members": [90]},
+    "fin_hub_L":             {"side": "L", "cls": "ear_fin", "pivot": "center",      "members": [88]},
+    "fin_hub_R":             {"side": "R", "cls": "ear_fin", "pivot": "center",      "members": [243]},
+    "ear_disc_L":            {"side": "L", "cls": "ear_disc", "pivot": "center",     "members": [237]},
+    "ear_disc_R":            {"side": "R", "cls": "ear_disc", "pivot": "center",     "members": [89]}
+  },
+
+  "controls": {
+    "brow_l_raise": {"range": [0, 1], "mirror_of": null, "effects": [
+      {"group": "brow_L_inner", "loc": [0, 0.034, 0.008], "rot": [0, 0, -4]},
+      {"group": "brow_L_outer", "loc": [0, 0.028, 0.006], "rot": [0, 0, 3]},
+      {"group": "brow_crest_L", "loc": [0, 0.022, 0.006], "delay": 0.04},
+      {"group": "forehead_L_transition", "loc": [0, 0.016, 0.004], "delay": 0.04},
+      {"group": "forehead_L_outer", "loc": [0, 0.010, 0.003], "delay": 0.075},
+      {"group": "upper_lid_L", "loc": [0, 0.010, 0.002]},
+      {"group": "temple_L", "rot": [0, 4, 0], "delay": 0.11}]},
+    "brow_l_lower": {"range": [0, 1], "effects": [
+      {"group": "brow_L_inner", "loc": [0.004, -0.026, 0.006], "rot": [0, 0, 11]},
+      {"group": "brow_L_outer", "loc": [0, -0.012, 0.004], "rot": [0, 0, -3]},
+      {"group": "brow_crest_L", "loc": [0, -0.014, 0.002], "delay": 0.04},
+      {"group": "forehead_L_transition", "loc": [0, -0.010, 0], "rot": [0, 0, 4], "delay": 0.04},
+      {"group": "upper_lid_L", "loc": [0, -0.012, 0.003]},
+      {"group": "temple_L", "rot": [0, -3, 0], "delay": 0.11}]},
+    "brow_l_inner": {"range": [0, 1], "effects": [
+      {"group": "brow_L_inner", "loc": [0, 0.020, 0.004], "rot": [0, 0, -14]},
+      {"group": "brow_L_outer", "loc": [0, -0.004, 0], "rot": [0, 0, -5]},
+      {"group": "brow_crest_L", "loc": [0, 0.010, 0.002], "rot": [0, 0, -6], "delay": 0.04},
+      {"group": "forehead_L_transition", "loc": [0, 0.008, 0.002], "rot": [0, 0, -6], "delay": 0.04},
+      {"group": "forehead_center_lower", "loc": [0, 0.004, 0], "delay": 0.075}]},
+    "eye_l_open": {"range": [0, 1], "neutral": 0.75, "effects": [
+      {"group": "upper_lid_L", "loc": [0, 0.08, -0.012]},
+      {"group": "lower_lid_L", "loc": [0, -0.034, -0.004]},
+      {"group": "brow_L_inner", "loc": [0, 0.012, 0], "delay": 0.04},
+      {"group": "brow_L_outer", "loc": [0, 0.012, 0], "delay": 0.04}]},
+    "eye_l_squint": {"range": [0, 1], "effects": [
+      {"group": "lower_lid_L", "loc": [0, 0.022, 0.004]},
+      {"group": "upper_lid_L", "loc": [0, -0.010, 0.002]},
+      {"group": "cheek_L", "loc": [0, 0.010, 0.003], "delay": 0.04}]},
+    "cheek_l_raise": {"range": [0, 1], "effects": [
+      {"group": "cheek_L", "loc": [0, 0.030, 0.008], "rot": [0, 0, 4]},
+      {"group": "cheek_aux_L", "loc": [0, 0.018, 0.005], "delay": 0.04},
+      {"group": "lower_lid_L", "loc": [0, 0.012, 0.003], "delay": 0.04},
+      {"group": "sideface_L_upper", "loc": [0.004, 0.008, 0], "delay": 0.075},
+      {"group": "sideface_L_lower", "loc": [0, 0.010, 0.002], "delay": 0.075},
+      {"group": "temple_L", "rot": [0, 2, 0], "delay": 0.11}]},
+    "forehead_l_tension": {"range": [0, 1], "effects": [
+      {"group": "forehead_L_transition", "loc": [-0.006, -0.006, 0], "rot": [0, 0, 6]},
+      {"group": "forehead_L_outer", "loc": [-0.005, -0.004, 0], "rot": [0, 0, 4], "delay": 0.04},
+      {"group": "brow_crest_L", "loc": [0, -0.006, 0], "delay": 0.04},
+      {"group": "forehead_center_lower", "loc": [0, -0.003, 0], "delay": 0.075}]},
+    "temple_l_flare": {"range": [0, 1], "effects": [
+      {"group": "temple_L", "rot": [0, 10, 0]},
+      {"group": "temple_fin_L", "rot": [8, 0, 0], "delay": 0.04},
+      {"group": "rear_fin_L", "rot": [10, 0, 0], "delay": 0.075},
+      {"group": "forehead_L_outer", "loc": [0, 0, 0.004], "delay": 0.04},
+      {"group": "ear_disc_L", "rot": [0, 0, 18], "delay": 0.11}]},
+    "face_l_tension": {"range": [0, 1], "effects": [
+      {"group": "sideface_L_upper", "loc": [-0.006, 0, -0.002], "rot": [0, 0, 3]},
+      {"group": "sideface_L_lower", "loc": [-0.006, 0.004, -0.002], "delay": 0.04},
+      {"group": "cheek_aux_L", "loc": [-0.004, 0, 0], "delay": 0.04},
+      {"group": "temple_L", "rot": [0, -4, 0], "delay": 0.075},
+      {"group": "temple_fin_L", "rot": [-4, 0, 0], "delay": 0.11}]},
+
+    "forehead_center_raise": {"range": [0, 1], "effects": [
+      {"group": "forehead_center_lower", "loc": [0, 0.012, 0.004]},
+      {"group": "forehead_center_mid", "loc": [0, 0.020, 0.006], "delay": 0.04},
+      {"group": "forehead_center_upper", "loc": [0, 0.026, 0.006], "delay": 0.075},
+      {"group": "brow_crest_L", "loc": [0, 0.008, 0.002], "delay": 0.04},
+      {"group": "brow_crest_R", "loc": [0, 0.008, 0.002], "delay": 0.04},
+      {"group": "nose_bridge_upper", "loc": [0, 0.006, 0.002]}]},
+    "jaw_open": {"range": [0, 1], "effects": [
+      {"group": "central_mask", "loc": [0, -0.022, 0.004], "rot": [-3, 0, 0]},
+      {"group": "chin_under", "loc": [0, -0.020, 0], "delay": 0.04},
+      {"group": "throat_plate", "loc": [0, -0.006, 0], "delay": 0.075},
+      {"group": "sideface_L_lower", "loc": [0, -0.006, 0], "delay": 0.04},
+      {"group": "sideface_R_lower", "loc": [0, -0.006, 0], "delay": 0.04},
+      {"group": "cheek_aux_L", "loc": [0, -0.004, 0], "delay": 0.04},
+      {"group": "cheek_aux_R", "loc": [0, -0.004, 0], "delay": 0.04}]},
+    "smile": {"range": [0, 1], "effects": [
+      {"group": "cheek_L", "loc": [0, 0.032, 0.008], "rot": [0, 0, 5]},
+      {"group": "cheek_R", "loc": [0, 0.032, 0.008], "rot": [0, 0, 5]},
+      {"group": "cheek_aux_L", "loc": [0, 0.020, 0.004], "delay": 0.04},
+      {"group": "cheek_aux_R", "loc": [0, 0.020, 0.004], "delay": 0.04},
+      {"group": "lower_lid_L", "loc": [0, 0.016, 0.003], "delay": 0.04},
+      {"group": "lower_lid_R", "loc": [0, 0.016, 0.003], "delay": 0.04},
+      {"group": "sideface_L_upper", "loc": [0, 0.008, 0], "delay": 0.075},
+      {"group": "sideface_R_upper", "loc": [0, 0.008, 0], "delay": 0.075},
+      {"group": "brow_L_outer", "loc": [0, 0.006, 0], "rot": [0, 0, 2], "delay": 0.075},
+      {"group": "brow_R_outer", "loc": [0, 0.006, 0], "rot": [0, 0, 2], "delay": 0.075},
+      {"group": "temple_L", "rot": [0, 5, 0], "delay": 0.11},
+      {"group": "temple_R", "rot": [0, 5, 0], "delay": 0.11},
+      {"group": "temple_fin_L", "rot": [4, 0, 0], "delay": 0.11},
+      {"group": "temple_fin_R", "rot": [4, 0, 0], "delay": 0.11},
+      {"group": "central_mask", "loc": [0, 0.004, 0.002], "delay": 0.04}]},
+    "surprise": {"range": [0, 1], "effects": [
+      {"group": "brow_L_inner", "loc": [0, 0.040, 0.008]}, {"group": "brow_R_inner", "loc": [0, 0.040, 0.008]},
+      {"group": "brow_L_outer", "loc": [0, 0.036, 0.006], "rot": [0, 0, 2]}, {"group": "brow_R_outer", "loc": [0, 0.036, 0.006], "rot": [0, 0, 2]},
+      {"group": "upper_lid_L", "loc": [0, 0.024, -0.002]}, {"group": "upper_lid_R", "loc": [0, 0.024, -0.002]},
+      {"group": "lower_lid_L", "loc": [0, -0.010, 0]}, {"group": "lower_lid_R", "loc": [0, -0.010, 0]},
+      {"group": "brow_crest_L", "loc": [0, 0.030, 0.006], "delay": 0.04}, {"group": "brow_crest_R", "loc": [0, 0.030, 0.006], "delay": 0.04},
+      {"group": "forehead_L_transition", "loc": [0, 0.022, 0.004], "delay": 0.04}, {"group": "forehead_R_transition", "loc": [0, 0.022, 0.004], "delay": 0.04},
+      {"group": "forehead_center_lower", "loc": [0, 0.016, 0.004], "delay": 0.04},
+      {"group": "forehead_center_mid", "loc": [0, 0.024, 0.006], "delay": 0.075},
+      {"group": "forehead_center_upper", "loc": [0, 0.030, 0.006], "delay": 0.11},
+      {"group": "forehead_L_outer", "loc": [0, 0.014, 0.004], "delay": 0.075}, {"group": "forehead_R_outer", "loc": [0, 0.014, 0.004], "delay": 0.075},
+      {"group": "temple_L", "rot": [0, 7, 0], "delay": 0.11}, {"group": "temple_R", "rot": [0, 7, 0], "delay": 0.11},
+      {"group": "temple_fin_L", "rot": [7, 0, 0], "delay": 0.11}, {"group": "temple_fin_R", "rot": [7, 0, 0], "delay": 0.11},
+      {"group": "central_mask", "loc": [0, -0.008, 0.002], "delay": 0.075}]},
+    "concern": {"range": [0, 1], "effects": [
+      {"group": "brow_L_inner", "loc": [0, 0.016, 0.004], "rot": [0, 0, -14]}, {"group": "brow_R_inner", "loc": [0, 0.016, 0.004], "rot": [0, 0, -14]},
+      {"group": "brow_L_outer", "loc": [0, -0.008, 0], "rot": [0, 0, -5]}, {"group": "brow_R_outer", "loc": [0, -0.008, 0], "rot": [0, 0, -5]},
+      {"group": "brow_crest_L", "loc": [0, 0.008, 0], "rot": [0, 0, -6], "delay": 0.04}, {"group": "brow_crest_R", "loc": [0, 0.008, 0], "rot": [0, 0, -6], "delay": 0.04},
+      {"group": "forehead_L_transition", "loc": [-0.004, 0.004, 0], "rot": [0, 0, -6], "delay": 0.04}, {"group": "forehead_R_transition", "loc": [-0.004, 0.004, 0], "rot": [0, 0, -6], "delay": 0.04},
+      {"group": "forehead_center_lower", "loc": [0, -0.008, 0], "delay": 0.075},
+      {"group": "forehead_center_mid", "loc": [0, -0.004, 0], "delay": 0.11},
+      {"group": "upper_lid_L", "loc": [0, -0.008, 0.002]}, {"group": "upper_lid_R", "loc": [0, -0.008, 0.002]}]}
+  },
+
+  "mirror_controls": {"brow_l_raise": "brow_r_raise", "brow_l_lower": "brow_r_lower", "brow_l_inner": "brow_r_inner",
+                      "eye_l_open": "eye_r_open", "eye_l_squint": "eye_r_squint", "cheek_l_raise": "cheek_r_raise",
+                      "forehead_l_tension": "forehead_r_tension", "temple_l_flare": "temple_r_flare", "face_l_tension": "face_r_tension"},
+
+  "head": {"pivot": [0.0, 0.02, -0.10], "neck_pivot": [0.0, 0.05, -0.62], "neck_share": 0.35,
+           "limits_deg": {"yaw": [-40, 40], "pitch": [-25, 25], "roll": [-20, 20]}},
+
+  "expressions": {
+    "neutral":   {},
+    "happy":     {"smile": 0.9, "cheek_l_raise": 0.3, "cheek_r_raise": 0.3, "eye_l_open": 0.62, "eye_r_open": 0.62, "brow_l_raise": 0.25, "brow_r_raise": 0.25, "temple_l_flare": 0.3, "temple_r_flare": 0.3},
+    "amused":    {"smile": 0.45, "cheek_l_raise": 0.6, "cheek_r_raise": 0.15, "eye_l_squint": 0.5, "eye_l_open": 0.55, "eye_r_open": 0.72, "brow_r_raise": 0.6, "brow_l_lower": 0.15, "head_roll": 0.08},
+    "surprised": {"surprise": 1.0, "eye_l_open": 1.0, "eye_r_open": 1.0, "jaw_open": 0.5, "forehead_center_raise": 0.6},
+    "worried":   {"concern": 1.0, "brow_l_inner": 0.5, "brow_r_inner": 0.5, "eye_l_open": 0.82, "eye_r_open": 0.82, "forehead_l_tension": 0.4, "forehead_r_tension": 0.4, "face_l_tension": 0.3, "face_r_tension": 0.3},
+    "sad":       {"concern": 0.7, "brow_l_inner": 0.8, "brow_r_inner": 0.8, "eye_l_open": 0.45, "eye_r_open": 0.45, "head_pitch": -0.12, "temple_l_flare": 0.0},
+    "angry":     {"brow_l_lower": 1.0, "brow_r_lower": 1.0, "eye_l_squint": 0.6, "eye_r_squint": 0.6, "eye_l_open": 0.5, "eye_r_open": 0.5, "face_l_tension": 0.8, "face_r_tension": 0.8, "forehead_l_tension": 0.8, "forehead_r_tension": 0.8},
+    "sceptical": {"brow_l_raise": 0.9, "brow_r_lower": 0.7, "eye_r_squint": 0.5, "eye_r_open": 0.55, "eye_l_open": 0.85, "cheek_r_raise": 0.25, "head_yaw": -0.08, "head_roll": -0.05},
+    "focused":   {"brow_l_lower": 0.35, "brow_r_lower": 0.35, "eye_l_squint": 0.35, "eye_r_squint": 0.35, "eye_l_open": 0.62, "eye_r_open": 0.62, "forehead_l_tension": 0.3, "forehead_r_tension": 0.3},
+    "tired":     {"eye_l_open": 0.32, "eye_r_open": 0.35, "brow_l_inner": 0.35, "brow_r_inner": 0.35, "brow_l_lower": 0.15, "brow_r_lower": 0.15, "jaw_open": 0.1, "head_pitch": -0.15}
+  }
+}

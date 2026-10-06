@@ -1,0 +1,7 @@
+*.obj
+*.npy
+*.npz
+!data/*.npz.xz
+work/
+__pycache__/
+*.blend1
